@@ -111,7 +111,9 @@
 <!ATTLIST c level (class | collection | file | fonds | item | otherlevel | recordgrp | series | subfonds | subgrp | subseries) #IMPLIED>
 <!ATTLIST c audience (external | internal) #IMPLIED>
 <!ATTLIST c otherlevel NMTOKEN #IMPLIED>
-<!ATTLIST c id ID #REQUIRED>
+<!-- F. Clavaud, 31 mars 2022 : suppression de cette ligne trop contraignante dans le cadre du devoir d'encodage <!ATTLIST c id ID #REQUIRED>-->
+<!-- FClavaud, 31 mars 2022 : ajout de la ligne suivante rendant l'attr. id optionnel -->
+<!ATTLIST c id ID #IMPLIED>
 
 <!-- Modification -->
 <!ELEMENT change (date, item)>

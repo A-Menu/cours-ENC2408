@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<!-- Exemple de document EAD, produit pour les étudiants du Master 2, par conversion manuelle d'un fichier Word dont le contenu est fourni par l'Etat sommaire des fonds d'archives privées des Archives nationales, dans sa version électronique publiée en 2011 par les Archives nationales. 
+Auteur : Florence Clavaud, Lab des Archives nationales, florence.clavaud@culture.gouv.fr.
+Les commentaires XML saisis donnent quelques explications.
+Ne pas oublier, pour travailler, l'indispensable Dictionnaire des balises de la DTD EAD 2002 (traduction française par l'AFNOR de la Tag Library publiée par la SAA en 2002, incluant des exemples en français), fournie dans le dossier de cours.
+Les manuels locaux de mise en oeuvre de la DTD EAD, à l'échelle d'une institution ou d'un projet, doivent aussi être utilisés lorsqu'ils existent.-->
+<ead>
+    <!-- en-tête EAD : élément obligatoire contient notamment eadid, où on donne un identifiant unique et pérenne pour l'IR. Typiquement, par ailleurs, on utilise l'identifiant aussi pour nommer le fichier. Dans le cadre de cet exercice, le pb ne se pose pas vraiment, car on se place hors de tout SI. -->
+    <!--Aux Archives nationales (AN) le SIA attribue automatiquement à tout nouvel IR un identifiant unique, qui ne sera pas réattribué si l'IR est supprimé. Il commence par "FRAN_IR_" suivi d'un nombre sur 6 chiffres. Ici on attribue au fichier un identifiant forgé, en utilisant uniquement les lettres de a à z non accentuées, majuscules ou minuscules, les chiffres de 0 à 9, sans espace. -->
+    <eadheader>
+        <eadid>FRAN_IR_febvre</eadid>
+        <filedesc>
+            <titlestmt>
+                <!-- le titre propre de l'instrument de recherche ; obligatoire -->
+                <titleproper>Fonds Lucien Febvre</titleproper>
+                <!-- le sous-titre donne normalement la nature du fichier ; ici on a affaire à une notice, normalement on inscrirait plutôt une valeur telle que "répertoire numérique, "inventaire analytique", "état des fonds"-->
+                <subtitle>Notice descriptive du fonds 591AP</subtitle>
+                <!-- nom du ou des auteurs-->
+                <!-- pas d'auteur connu pour cette notice au Lab des Archives nationales -->
+            </titlestmt>
+            <!-- admettons qu'on souhaite mentionner le fait qu'il s'agit d'une première édition électronique, dont la teneur date de 2011 -->
+            <editionstmt>
+                <edition>1<emph render="super">ere</emph> édition électronique</edition>
+            </editionstmt>
+            <publicationstmt>
+                <publisher>Archives nationales (site de Paris)</publisher>
+                <address>
+                    <addressline>59 rue Guynemer</addressline>
+                    <addressline>93380 Pierrefitte-sur-Seine</addressline>
+                </address>
+                <!-- aux AN la date est celle de la publication de l'IR, soit l'année de première mise à disposition pour les IR dématérialisés, ce qui est le cas ici, ou l'année de dernière publication pour tous les autres IR -->
+                <date normal="2011">2011</date>
+            </publicationstmt>
+            <!-- si cette publication s'inscrit dans une série, on le note ici <seriesstmt><p></p></seriesstmt>-->
+        </filedesc>
+        <!-- informations sur le profil du fichier XML -->
+        <profiledesc>
+            <creation>Instrument de recherche en XML/EAD produit à l’aide du logiciel oXygen par
+                conversion manuelle du fichier Word, en <date normal="2022-03">mars 2022</date>.
+                Auteur de la conversion : Florence Clavaud, Lab des Archives nationales</creation>
+            <langusage>Instrument de recherche rédigé en <language langcode="fre"
+                    >français</language></langusage>
+            <descrules>La présente notice est conforme à la <extref
+                    href="https://www.ica.org/fr/isadg-norme-generale-et-internationale-de-description-archivistique-deuxieme-edition"
+                    >norme ISAD(G)</extref>. </descrules>
+        </profiledesc>
+        <!-- mentions de révision : ici pour l'exercice, comme ces données ne sont pas présentes dans le fichier Word en tant que telles, on va spécifier qu'on a procédé à quelques mises à jour car le fonds est désormais conservé aux AN-->
+        <revisiondesc>
+            <change>
+                <date>2022-03</date>
+                <item>Mise à jour de la notice : le fonds Lucien Febvre est désormais conservé aux
+                    Archives nationales.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <!-- élément archdesc, obligatoire, ainsi que l'élément did, qui vient en premier, et doit contenir au moins un sous-élément. Did contient notamment les éléments EAD correspondant aux catégories d'information recommandées à tous les niveaux en ISAD(G) : référence, dates, intitulé/analyse, description physique, producteur ; le niveau de description est ici porté dans l'attribut level, obligatoire dans l'élément archdesc. -->
+    <archdesc level="fonds">
+        <did>
+            <unittitle>Fonds Lucien Febvre</unittitle>
+            <unitdate normal="1907/1960">1907-1960</unitdate>
+            <unitid>591AP</unitid>
+            <origination>
+                <!-- ici on référence dans l'attribut authfilenumber, via son identifiant unique, la notice décrivant Lucien Febvre dans le référentiel des producteurs des AN ; ailleurs qu'aux AN, on aurait aussi pu par ex. renvoyer à la notice sur L. Febvre à la BnF, http://ark.bnf.fr/ark:/12148/cb119024609. Si l'on ne trouve pas de notice d'autorité dotée d'un identifiant pérenne ou faisant l'objet d'un permalien, on peut, comme fait ici pour l'exemple, utiliser l'attribut normal pour saisir la forme normalisée du nom du producteur. -->
+                <persname normal="Febvre, Lucien (1878-1956)" authfilenumber="FRAN_NP_010103"
+                    >Febvre, Lucien (1878-1956)</persname></origination>
+            <!-- l'organisme qui a la responsabilité intellectuelle du fonds. Aux AN on écrira la chose comme ci-dessous. Ici on a ajouté, pour compléter cela dans le cadre de cet exercice, le lien vers la notice qui décrit les AN dans le référentiel des producteurs des AN -->
+            <repository><corpname authfilenumber="FRAN_NP_005061">Archives nationales
+                    (France)</corpname></repository>
+            <physdesc><extent>64 cartons (591 AP 1-64)</extent> ; <extent>9,50 mètres
+                    linéaires</extent>.</physdesc>
+        </did>
+        <!-- modalités d'entrée : on pourrait, dans d'autres cas, avoir besoin ici d'utiliser un attribut audience avec la valeur internal -->
+        <acqinfo>
+            <!-- s'il y a une liste, on peut utiliser l'élément <list> ; ici il faut simplement utiliser p ; par ailleurs c'est aussi une bonne idée d'encoder la date dans un élément date-->
+            <p>don de Monsieur Henri Febvre, 1998</p>
+        </acqinfo>
+        <!-- ici on ajoute un élément custodhist pour préciser que le fonds a d'abor été conservé à l'EHESS avant d'entrer aux AN en 2017.-->
+        <custodhist>
+            <p>Fonds d’abord conservé à l’Ecole des Hautes Etudes en Sciences Sociales (EHESS) avant
+                d’arriver sur le site des Archives nationales en 2017.</p>
+        </custodhist>
+        <accessrestrict>
+            <p>Sur autorisation.</p>
+        </accessrestrict>
+        <!-- L'historique du producteur : encodé pour les besoins de l'exercice, mais normalement si, comme ici, on dispose d'une notice externe à l'IR sur le producteur, on ne doit pas encoder l'historique du producteur dans le fichier EAD. Noter que comme p peut en EAD contenir les éléments d'indexation, on aurait pu baliser comme tels les noms d'organismes, de personnes, d'événements, de lieux. -->
+        <!-- FC pour mémoire : le site Web des archives de l'EHESS contient une page sur Lucien Febvre, voir http://lodel.ehess.fr/archives/document.php?id=4938-->
+        <bioghist>
+            <!-- on a choisi ici d'encoder avec head le titre de l'historique, pour l'exemple, et aussi parce qu'on peut considérer que ce titre varie d'une notice à l'autre. -->
+            <head>Notice biographique</head>
+            <p>Auteur d’une thèse sur <emph render="italic">Philippe II et la Franche-Comté</emph>
+                (1911), fondateur avec Marc Bloch des <emph render="italic">Annales d’histoire
+                    économique et sociale</emph> (1929), Lucien Febvre (1878-1956) fut professeur au
+                Collège de France (1933). Influencé par Paul Vidal de la Blache, il publia <emph
+                    render="italic">La Terre et l’évolution humaine</emph> (avec M. Bataillon, 1922)
+                où il montra les liens existants entre l’histoire et la géographie. Il écrivit
+                ensuite <emph render="italic">Un destin, Martin Luther</emph> (1928), <emph
+                    render="italic">Le Problème de l’incroyance au XVI<emph render="super">e</emph>
+                    siècle, la Religion de Rabelais </emph>(1942), <emph render="italic"
+                    >L’Apparition du livre</emph> (avec Henri- Jean Martin, 1957), <emph
+                    render="italic">Au cœur religieux du XVI<emph render="super">e</emph>
+                    siècle</emph> (1957). Sa conception de l’histoire, comprise comme une synthèse
+                des éléments politiques, économiques, sociaux, religieux, culturels et mentaux, est
+                exposée dans ses <emph render="italic">Combats pour l’histoire</emph> (1953).
+                Président du Comité d’histoire de la Deuxième Guerre mondiale, délégué de la France
+                à la Conférence générale de l’Unesco successivement à Paris, Mexico et Beyrouth,
+                président de la 6<emph render="super">e</emph> section de l’École pratique des
+                hautes études, Lucien Febvre dirigea aussi <emph render="italic">L’Encyclopédie
+                    française</emph> créée avec A. de Monzie (1935).</p>
+        </bioghist>
+        <otherfindaid>
+            <p>Etat somm. dact., 1998, 273 p.</p>
+        </otherfindaid>
+        <!-- ici on a réparti entre les éléments otherfindaid et processinfo les informations données dans le fichier Word sous le libellé "Instrument de rechezrche"-->
+        <processinfo>
+            <p>Fonds en cours de classement.</p>
+        </processinfo>
+        <separatedmaterial>
+            <!-- les archives complémentaires de même provenance -->
+            <p>Les Archives nationales (site de Paris) conservent la correspondance croisée entre
+                Marc Bloch et Lucien Febvre, sous la cote <archref
+                    href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_053789/c-2vrijiou1-c1f0vs30d74"
+                    >AB XIX 5028</archref>.</p>
+            <p>À l’exception d’un petit nombre de lettres, celle-ci a été publiée par Bertrand
+                Müller dans <bibref><emph render="italic">Marc Bloch, Lucien Febvre et les « Annales
+                        d’histoire économique et sociale » : correspondance</emph>, Paris,
+                    1994-2003, 3 vol.</bibref>.</p>
+            <p>Voir à ce sujet également les instruments de recherche suivants : <bibref>AB XIX 5028
+                    : correspondance échangée entre Marc Bloch et Lucien Febvre et documents se
+                    rapportant aux deux historiens, 1908-1963 et s. d., inv. somm. dact. par F.
+                    Aujogue, 2004, 17 p.</bibref> ; <bibref>Correspondance échangée entre Marc Bloch
+                    et Lucien Febvre (1928-1943), collationnement des lettres publiées par Bertrand
+                    Müller avec celles conservées aux Archives nationales (site de Paris)</bibref>,
+                dact., par F. Aujogue, 2004, 13 p.</p>
+        </separatedmaterial>
+        <bibliography>
+            <bibref><title>Hommage à Lucien Febvre. Éventail de l’histoire vivante, offert par
+                    l’amitié d’historiens, linguistes, géographes, économistes, sociologues,
+                    ethnologues</title>, Paris, Armand Colin, 1953, 2 vol.</bibref>
+            <bibref><title>Institut de France. Académie des sciences morales et politiques. Notice
+                    sur la vie et les travaux de Lucien Febvre (1878-1956) par Maurice Baumont....,
+                    séance du 27 avril 1959</title>, Paris, impr. Firmin-Didot et Cie, 1959, 22
+                p.</bibref>
+        </bibliography>
+        <!-- indexation de l'IR, au moins au niveau haut : voir des exemples dans la notice du fonds Blum. -->
+        <!-- description des sous-composants :ici la structure est simple, et les informations sont sommaires. On utilise toujours en France une arborescence d'éléments c. -->
+        <!-- on a choisi de renseigner systématiquement l'attribut level de chaque élément c ; en général on ne fait pas cet effort, même si c'est nettement préférable. On a considéré la plupart des grands sous-ensembles comme des séries organiques ; dans le doute on peut toujours spécifier qu'il s'agit de groupes de documents - recordgrp.-->
+        <!-- dans les unités de description ci-dessous, on aurait pu indexer les types de documents, en utilisant le référentiel des AN, et l'élément genreform dans controlaccess-->
+        <dsc>
+            <c level="series">
+                <did>
+                    <unitid>591AP/52-591AP/55</unitid>
+                    <unittitle>Correspondance</unittitle>
+                </did>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>591AP/27-591AP/34</unitid>
+                    <unitid>591AP/48-591AP/51</unitid>
+                    <unitid>591AP/60-591AP/63</unitid>
+                    <unittitle>Dossiers de travail, fiches bibliographiques</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/2-591AP/3</unitid>
+                    <unitid>591AP/14</unitid>
+                    <unitid>591AP/59</unitid>
+                    <unittitle>Cours et conférences</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/14</unitid>
+                    <unitid>591AP/23-591AP/24</unitid>
+                    <unitid>591AP/26</unitid>
+                    <unittitle>Réflexions sur la philosophie de l’Histoire</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/7-591AP/8</unitid>
+                    <unitid>591AP/13</unitid>
+                    <unitid>591AP/15-591AP/26</unitid>
+                    <unittitle>Recherches sur le XVI<emph render="italic">e</emph> siècle, la
+                        Réforme, l’humanisme et Rabelais</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/1</unitid>
+                    <unitid>591AP/25</unitid>
+                    <unitid>591AP/37-591AP/47</unitid>
+                    <unittitle>Recherches sur la France-Comté et les Pays-Bas hollandais</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/9</unitid>
+                    <unitid>591AP/18</unitid>
+                    <unittitle>Recherches sur l’art</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/56-591AP/58</unitid>
+                    <unittitle>Direction de <emph render="italic">L’Encyclopédie
+                        française</emph></unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/5</unitid>
+                    <unitid>591AP/36</unitid>
+                    <unittitle>Commission Unesco pour l’éducation, la science et la
+                        culture</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/3-591AP/4</unitid>
+                    <unitid>591AP/6</unitid>
+                    <unitid>591AP/35</unitid>
+                    <unittitle>Tirés à part et plaquettes de Lucien Febvre</unittitle>
+                </did>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>591AP/10-591AP/11</unitid>
+                    <unitid>591AP/64</unitid>
+                    <unittitle>Tirés à part et plaquettes adressés à Lucien Febvre</unittitle>
+                </did>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

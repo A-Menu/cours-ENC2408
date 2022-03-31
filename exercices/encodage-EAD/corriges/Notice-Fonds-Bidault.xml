@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<!-- Exemple de document EAD, produit pour les étudiants du Master 2, par conversion manuelle d'un fichier Word dont le contenu est fourni par l'Etat sommaire des fonds d'archives privées des Archives nationales, dans sa version électronique publiée en 2011 par les Archives nationales. 
+Auteur : Florence Clavaud, Lab des Archives nationales, florence.clavaud@culture.gouv.fr.
+Les commentaires XML saisis donnent quelques explications.
+Ne pas oublier, pour travailler, l'indispensable Dictionnaire des balises de la DTD EAD 2002 (traduction française par l'AFNOR de la Tag Library publiée par la SAA en 2002, incluant des exemples en français), fournie dans le dossier de cours.
+Les manuels locaux de mise en oeuvre de la DTD EAD, à l'échelle d'une institution ou d'un projet, doivent aussi être utilisés lorsqu'ils existent.-->
+<ead>
+    <!-- en-tête EAD : élément obligatoire contient notamment eadid, où on donne un identifiant unique et pérenne pour l'IR. Typiquement, par ailleurs, on utilise l'identifiant aussi pour nommer le fichier Dans le cadre de cet exercice, le pb ne se pose pas vraiment, car on se place hors de tout SI. -->
+    <!--Aux Archives nationales (AN) le SIA attribue automatiquement à tout nouvel IR un identifiant unique, qui ne sera pas réattribué si l'IR est supprimé. Il commence par "FRAN_IR_" suivi d'un nombre sur 6 chiffres. Ici on attribue au fichier un identifiant forgé, en utilisant uniquement les lettres de a à z non accentuées, majuscules ou minuscules, les chiffres de 0 à 9, sans espace. -->
+    <eadheader>
+        <eadid>FRAN_IR_bidault</eadid>
+        <filedesc>
+            <titlestmt>
+                <!-- le titre propre de l'instrument de recherche ; obligatoire -->
+                <titleproper>Fonds Georges Bidault</titleproper>
+                <!-- le sous-titre donne normalement la nature du fichier ; ici on a affaire à une notice, normalement on inscrirait plutôt une valeur telle que "répertoire numérique, "inventaire analytique", "état des fonds"-->
+                <subtitle>Notice descriptive du fonds 457AP</subtitle>
+                <!-- nom du ou des auteurs ; un seul élément EAD disponible pour contenir tous ces noms-->
+                <author>par I. Irigoin et P. Gilles (1993) ; F. Aujogue (2004)</author>
+            </titlestmt>
+            <!-- admettons qu'on souhaite mentionner le fait qu'il s'agit d'une première édition électronique, dont la teneur date de 2011 -->
+            <editionstmt>
+                <edition>1<emph render="super">ere</emph> édition électronique</edition>
+            </editionstmt>
+            <publicationstmt>
+                <publisher>Archives nationales</publisher>
+                <address>
+                    <addressline>59 rue Guynemer</addressline>
+                    <addressline>93380 Pierrefitte-sur-Seine</addressline>
+                </address>
+                <!-- aux AN la date est celle de la publication de l'IR, soit l'année de première mise à disposition pour les IR dématérialisés, ce qui est le cas ici, ou l'année de dernière publication pour tous les autres IR -->
+                <date normal="2011">2011</date>
+            </publicationstmt>
+            <!-- si cette publication s'inscrit dans une série, on le note ici <seriesstmt><p></p></seriesstmt>-->
+        </filedesc>
+        <!-- informations sur le profil du fichier XML -->
+        <profiledesc>
+            <creation>Instrument de recherche en XML/EAD produit à l’aide du logiciel oXygen par
+                conversion manuelle du fichier Word, en <date normal="2022-03">mars 2022</date>.
+                Auteur de la conversion : Florence Clavaud, Lab des Archives nationales</creation>
+            <langusage>Instrument de recherche rédigé en <language langcode="fre"
+                    >français</language></langusage>
+            <descrules>La présente notice est conforme à la <extref
+                    href="https://www.ica.org/fr/isadg-norme-generale-et-internationale-de-description-archivistique-deuxieme-edition"
+                    >norme ISAD(G)</extref>. </descrules>
+        </profiledesc>
+    </eadheader>
+    <!-- élément archdesc, obligatoire, ainsi que l'élément did, qui vient en premier, et doit contenir au moins un sous-élément. Did contient notamment les éléments EAD correspondant aux catégories d'information recommandées à tous les niveaux en ISAD(G) : référence, dates, intitulé/analyse, description physique, producteur ; le niveau de description est ici porté dans l'attribut level, obligatoire dans l'élément archdesc. -->
+    <archdesc level="fonds">
+        <did>
+            <unittitle>Fonds Georges Bidault</unittitle>
+            <unitdate normal="1901/2000">XX<emph render="super">e</emph> siècle</unitdate>
+            <unitid>457AP</unitid>
+            <!-- ici on référence dans l'attribut authfilenumber, via son identifiant unique, la notice décrivant Georges Bidault dans le référentiel des producteurs des AN ; ailleurs qu'aux AN, on aurait pu par ex. renvoyer à la notice sur G. Bidault à la BnF, http://ark.bnf.fr/ark:/12148/cb12317811q.public. Si l'on ne trouve pas de notice d'autorité dotée d'un identifiant pérenne ou faisant l'objet d'un permalien, on peut, comme fait ici pour l'exemple, utiliser l'attribut normal pour saisir la forme normalisée du nom du producteur. -->
+            <origination><persname authfilenumber="FRAN_NP_051627">Bidault, Georges
+                    (1899-1983)</persname>
+            </origination>
+            <!-- l'organisme qui a la responsabilité intellectuelle du fonds. Aux AN on écrira la chose comme ci-dessous. Ici on a ajouté, pour compléter cela dans le cadre de cet exercice, le lien vers la notice qui décrit les AN dans le référentiel des producteurs des AN -->
+            <repository><corpname authfilenumber="FRAN_NP_005061">Archives nationales
+                    (France)</corpname></repository>
+            <physdesc><extent>190 cartons (457 AP 1-191)</extent> ; <extent>22,86 mètres
+                    linéaires</extent>.</physdesc>
+        </did>
+        <!-- modalités d'entrée : on pourrait, dans d'autres cas, avoir besoin ici d'utiliser un attribut audience avec la valeur internal -->
+        <acqinfo>
+            <!-- utilisation de l'élément list ; on pourra facilement le transformer en liste en HTML -->
+            <list>
+                <item>457AP/1 à 457AP/165 : don de Madame Bidault et de son neveu, M. Georges
+                    Bidault, 1984-1998.</item>
+                <item>457AP/166 à 457AP/188 : dépôt, 1983, transformé en don par les héritiers
+                    Bidault, 2003.</item>
+                <item>457AP/189 à 457AP/191 : don de Monsieur Georges Bidault, 2004.</item>
+            </list>
+        </acqinfo>
+        <accessrestrict>
+            <p>libre ou sur dérogation.</p>
+        </accessrestrict>
+        <otherfindaid>
+            <!-- on utilise bibref ; ici on structure finement l'information, mais ce n'est pas forcément très utile ; voir la notice Blum pour un exemple d'encodage moins fin. On ajoute au passage un lien vers l'IR mentionné, qui est disponible dans la SIV des AN-->
+            <bibref href="https://www.siv.archives-nationales.culture.gouv.fr/siv/IR/FRAN_IR_003630">
+                <title>Fonds Georges Bidault (XXe siècle) : répertoire (457AP/1-457AP/138)</title>,
+                par <persname>J. Irigoin</persname> et <persname>P. Gillet</persname>,
+                        <imprint><publisher>Archives nationales</publisher>,
+                    <date>1993</date></imprint>.</bibref>
+        </otherfindaid>
+        <!-- L'historique du producteur : encodé pour les besoins de l'exercice, mais normalement si, comme ici, on dispose d'une notice externe à l'IR sur le producteur, on ne doit pas encoder l'historique du producteur dans le fichier EAD. Noter que comme p peut en EAD contenir les éléments d'indexation, on aurait pu baliser comme tels les noms d'organismes, de personnes, d'événements, de lieux. -->
+        <bioghist>
+            <!-- on a choisi ici d'encoder avec head le titre de l'historique, pour l'exemple, et aussi parce qu'on peut considérer que ce titre varie d'une notice à l'autre. -->
+            <head>Notice biographique</head>
+            <p>Après sa libération de l’armée en 1918, Georges Bidault (1899-1983) devient
+                professeur agrégé d’histoire, en poste à Valenciennes (1925-1926), Reims
+                (1926-1931), Paris (1931- 1939) et Lyon (1942-1943). Proche du Sillon de Marc
+                Sangnier, il milite dans divers mouvements démocrates-chrétiens et notamment au sein
+                du Parti démocrate populaire dont il devient l’un des leaders. Engagé en 1940, il
+                est fait prisonnier de guerre puis relâché sur la foi d’un faux certificat médical.
+                Il rentre dans la Résistance, est porte-parole du mouvement Combat puis préside le
+                Conseil national de la Résistance à la mort de Jean Moulin en 1943. À la Libération,
+                il contribue à fonder le Mouvement républicain populaire, dont il devient le
+                deuxième président, de 1949 à 1952. Le général de Gaulle lui confie en octobre 1944
+                le portefeuille des Affaires étrangères, qu’il conserve jusqu’en décembre 1946,
+                exerçant la même fonction à plusieurs reprises jusqu’en juin 1954. Après avoir été
+                six mois président du gouvernement provisoire (et ministre des Affaires étrangères,
+                de juin à décembre 1946), Georges Bidault est investi Président du Conseil en
+                octobre 1949 et à nouveau pressenti en juin 1952. C’est sous son impulsion que la
+                France rentre dans l’O.T.A.N. en 1949. Il défend par ailleurs l’Union française et
+                se déclare favorable à la Communauté européenne de défense (C.E.D.). Lors des
+                négociations internationales de Genève qui suivent le désastre de Diên Biên Phu,
+                Georges Bidault est récusé par les Soviétiques ; le gouvernement Laniel tombe, et
+                Georges Bidault est remplacé par Pierre Mendès France qui cumule les Affaires
+                étrangères et la présidence du Conseil. Bidault prend totalement fait et cause pour
+                les positions de l’Algérie française. Il quitte le M.R.P. en 1958 et crée la
+                Démocratie chrétienne de France. Il s’oppose violemment à la politique algérienne du
+                général de Gaulle, au point d’être recherché pour complot contre la sûreté de
+                l’État. Son immunité parlementaire est levée en 1962, et Georges Bidault est
+                contraint à l’exil, se fixant finalement au Brésil où il ressuscite le CNR. Après
+                l’amnistie de 1968, il fonde le Mouvement pour la justice et la liberté. Georges
+                Bidault avait également été député de la Loire (1945, réélu en 1946, 1951 et
+                1956).</p>
+        </bioghist>
+        <separatedmaterial>
+            <!-- les archives complémentaires de même provenance -->
+            <p>Aux Archives nationales (site de Paris) est conservée une cassette de l’interview
+                donnée par Georges Bidault à un journaliste de la B.B.C. en janvier 1963 (8 AV
+                815).</p>
+            <p>Quant à la correspondance parlementaire de Georges Bidault, elle se trouve aux
+                Archives départementales de la Loire (sous-série 57 J).</p>
+        </separatedmaterial>
+        <relatedmaterial>
+            <!-- les archives complémentaires de provenance différente -->
+            <p>Aux Archives du ministère des Affaires étrangères sont conservés le fonds du Cabinet
+                du ministre de 1944 à 1953, le fonds du Secrétariat général de 1945 à 1954 et celui
+                du Secrétariat des conférences de 1945 à 1955.</p>
+            <p>Les Archives nationales (site de Paris) détiennnent les archives du M.R.P. sous la
+                cote 350 AP et le Service historique de l’armée de terre, celles du cabinet du
+                ministre de la Défense (sous-série 1 R).</p>
+            <p>Laurence Chapelle-Fossemalle, <emph render="italic">Biographie de Georges Bidault de
+                    1899 à 1936</emph>, mémoire de maîtrise d’Histoire, Université de Paris X
+                Nanterre, 1985, 114 p., conservé aux Archives nationales sous la cote AB XLV
+                156.</p>
+        </relatedmaterial>
+        <bibliography>
+            <bibref><title>Georges Bidault (1899-1983)</title>, bulletin de l’association des « Amis
+                de Georges Bidault », janvier 1986.</bibref>
+        </bibliography>
+        <!-- indexation de l'IR, au moins au niveau haut : voir des exemples dans la notice du fonds Blum. -->
+        <!-- description des sous-composants :ici la structure est simple, et les informations sont sommaires. On utilise toujours en France une arborescence d'éléments c. -->
+        <!-- on a choisi de renseigner systématiquement l'attribut level de chaque élément c ; en général on ne fait pas cet effort, même si c'est nettement préférable. On a considéré la plupart des grands sous-ensembles comme des séries organiques ; dans le doute on peut toujours spécifier qu'il s'agit de groupes de documents - recordgrp.-->
+        <dsc>
+            <c level="series">
+                <did>
+                    <unitid>457AP/1-457AP/133</unitid>
+                    <unittitle>Georges Bidault, ministre des Affaires étrangères. (<unitdate
+                            normal="1944/1948">1944-1948</unitdate> et
+                            <unitdate>1953-1954</unitdate>)</unittitle>
+                </did>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/1-457AP/5</unitid>
+                        <unittitle>Conférences internationales et organisation des Nations
+                            unies.</unittitle>
+                        <unitdate normal="1944/1954">1944-1954</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/6-457AP/19</unitid>
+                        <unittitle>Conférences internationales et conseils des ministres des
+                            Affaires étrangères</unittitle>
+                        <unitdate normal="1945/1948">1945-1948</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/20-457AP/22</unitid>
+                        <unittitle>Plan Marshall</unittitle>
+                        <unitdate normal="1947/1948">1947-1948</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/23-457AP/24</unitid>
+                        <unittitle>Traité de Bruxelles </unittitle>
+                        <unitdate normal="1948-03-17">17 mars 1948</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/25-457AP/27</unitid>
+                        <unittitle>Pacte atlantique</unittitle>
+                        <unitdate normal="1948/1969">1948-1969</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/28-457AP/43</unitid>
+                        <unittitle>Europe</unittitle>
+                        <unitdate normal="1948/1968">1948-1968</unitdate>
+                    </did>
+                    <scopecontent>
+                        <p>Conseil de l’Europe, plan Schuman et Communauté européenne du charbon et
+                            de l’acier, Communauté européenne de défense, Communauté politique
+                            européenne, pool vert (organisation européenne des marchés
+                            agricoles).</p>
+                    </scopecontent>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/44-457AP/51</unitid>
+                        <unittitle>Relations internationales et bilatérales </unittitle>
+                        <unitdate normal="1953/1955">1953-1955 </unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/52-457AP/55</unitid>
+                        <unittitle>Indochine</unittitle>
+                        <unitdate normal="1953/1959">1953-1959</unitdate>
+                    </did>
+                </c>
+                <c level="recordgrp">
+                    <did>
+                        <unitid>457AP/56-457AP/59</unitid>
+                        <unittitle>Documentation</unittitle>
+                        <unitdate normal="1946/1958">1946-1958</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/60-457AP/133</unitid>
+                        <unittitle>Dossiers classés par pays ou zones géographiques</unittitle>
+                        <unitdate normal="1944/1969">1944-1969</unitdate>
+                    </did>
+                    <!-- ICi on aurait pu oindexer les lieux mentionnés, en utilisant controlaccess et autant de sous-éléments geogname que nécssaire, et si possible le référentiel des lieux des AN-->
+                    <scopecontent>
+                        <p>Allemagne, Autriche, Tchécoslovaquie, Hongrie, Europe centrale et
+                            orientale, Empire britannique, États-Unis, Arctique et Antarctique,
+                            Amérique latine, U.R.S.S., Pologne, Italie, Balkans, Grèce, Yougoslavie,
+                            Roumanie, Bulgarie, Albanie, Turquie, Espagne, Portugal, Belgique,
+                            Danemark, Finlande, Luxembourg, Monaco, Norvège, Pays-Bas, Suède,
+                            Suisse, Vatican, Union française, Afrique du Nord, Algérie, Tunisie,
+                            Maroc, Afrique noire et Madagascar, Proche-Orient et Moyen-Orient, Asie
+                            et Extrême-Orient.</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series">
+                <did>
+                    <unitid>457AP/134-457AP/168</unitid>
+                    <unittitle>Politique intérieure de la France</unittitle>
+                    <unitdate normal="1940/1959">1940-1959</unitdate>
+                </did>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/134-457AP/135</unitid>
+                        <unittitle>Gouvernement de Vichy</unittitle>
+                        <unitdate normal="1940/1954">1940-1954</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/135-457AP/136</unitid>
+                        <unittitle>Politique générale</unittitle>
+                        <unitdate normal="1944/1955">1944-1955</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/137-457AP/140</unitid>
+                        <unittitle>Ministère des Affaires étrangères : réorganisation du ministère,
+                            personnel, budget</unittitle>
+                        <unitdate normal="1944/1963">1944-1963</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/141-457AP/143</unitid>
+                        <unittitle>Premier gouvernement Georges Bidault</unittitle>
+                        <unitdate normal="1946-06-24/1946-12-16">24 juin-16 décembre 1946</unitdate>
+                    </did>
+                </c>
+                <c level="subseries">
+                    <did>
+                        <unitid>457AP/144-457AP/149</unitid>
+                        <unittitle>Deuxième gouvernement Georges Bidault</unittitle>
+                        <unitdate normal="1949-10-28/1950-07-02">28-29 octobre 1949-2 juillet
+                            1950</unitdate>
+                    </did>
+                </c>
+                <c level="recordgrp">
+                    <did>
+                        <unitid>457AP/150-457AP/162</unitid>
+                        <unittitle>Séquelles de la guerre, Résistance, épuration ; Défense nationale </unittitle>
+                        <unitdate normal="1945/1956">1945-1956</unitdate>
+                    </did>
+                </c>
+                <c level="recordgrp">
+                    <did>
+                        <unitid>457AP/163-457AP/168</unitid>
+                        <unittitle>Affaires de presse, Mouvement républicain populaire
+                            (M.R.P.)</unittitle>
+                        <unitdate normal="1946/1959">1946-1959</unitdate>
+                    </did>
+                </c>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>457AP/169-457AP/191</unitid>
+                    <unittitle>Papiers personnels de Georges Bidault, dont correspondance et
+                        photographies le concernant ainsi que son épouse, née Suzanne
+                        Borel</unittitle>
+                    <unitdate normal="1926/2004">1926-2004</unitdate>
+                </did>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

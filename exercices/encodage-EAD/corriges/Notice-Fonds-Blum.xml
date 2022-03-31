@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<!-- Exemple de document EAD, produit pour les étudiants du Master 2, par conversion manuelle d'un fichier Word dont le contenu est fourni par l'Etat sommaire des fonds d'archives privées des Archives nationales, dans sa version électronique publiée en 2011 par les Archives nationales. 
+Auteur : Florence Clavaud, Lab des Archives nationales, florence.clavaud@culture.gouv.fr.
+Les commentaires XML saisis donnent quelques explications.
+Ne pas oublier, pour travailler, l'indispensable Dictionnaire des balises de la DTD EAD 2002 (traduction française par l'AFNOR de la Tag Library publiée par la SAA en 2002, incluant des exemples en français), fournie dans le dossier de cours.
+Les manuels locaux de mise en oeuvre de la DTD EAD, à l'échelle d'une institution ou d'un projet, doivent aussi être utilisés lorsqu'ils existent.-->
+<ead>
+    <!-- en-tête EAD : élément obligatoire contient notamment eadid, où on donne un identifiant unique et pérenne pour l'IR. Typiquement, par ailleurs, on utilise l'identifiant aussi pour nommer le fichier. Dans le cadre de cet exercice, le pb ne se pose pas vraiment, car on se place hors de tout SI. -->
+    <!--Aux Archives nationales (AN) le SIA attribue automatiquement à tout nouvel IR un identifiant unique, qui ne sera pas réattribué si l'IR est supprimé. Il commence par "FRAN_IR_" suivi d'un nombre sur 6 chiffres. Ici on attribue au fichier un identifiant forgé, en utilisant uniquement les lettres de a à z non accentuées, majuscules ou minuscules, les chiffres de 0 à 9, sans espace. -->
+    <eadheader>
+        <eadid>FRAN_IR_blum</eadid>
+        <filedesc>
+            <titlestmt>
+                <!-- le titre propre de l'instrument de recherche ; obligatoire -->
+                <titleproper>Fonds Léon Blum</titleproper>
+                <!-- le sous-titre donne normalement la nature du fichier ; ici on a affaire à une notice, normalement on inscrirait plutôt une valeur telle que "répertoire numérique, "inventaire analytique", "état des fonds"-->
+                <subtitle>Notice descriptive du fonds 570AP</subtitle>
+                <!-- nom du ou des auteurs ; un seul élément EAD disponible pour contenir tous ces noms-->
+                <author>Établi par M. -G. Chevignard et Ch. Nougaret</author>
+            </titlestmt>
+            <!-- admettons qu'on souhaite mentionner le fait qu'il s'agit d'une première édition électronique, dont la teneur date de 2011 -->
+            <editionstmt>
+                <edition>1<emph render="super">ere</emph> édition électronique</edition>
+            </editionstmt>
+            <publicationstmt>
+                <publisher>Archives nationales</publisher>
+                <address>
+                    <addressline>59 rue Guynemer</addressline>
+                    <addressline>93380 Pierrefitte-sur-Seine</addressline>
+                </address>
+                <!-- aux AN la date est celle de la publication de l'IR, soit l'année de première mise à disposition pour les IR dématérialisés, ce qui est le cas ici, ou l'année de dernière publication pour tous les autres IR -->
+                <date normal="2011">2011</date>
+            </publicationstmt>
+            <!-- si cette publication s'inscrit dans une série, on le note ici <seriesstmt><p></p></seriesstmt>-->
+        </filedesc>
+        <!-- informations sur le profil du fichier XML -->
+        <profiledesc>
+            <creation>Instrument de recherche en XML/EAD produit à l'aide du logiciel oXygen par
+                conversion manuelle du fichier Word, en <date normal="2022-03">mars 2022</date>.
+                Auteur de la conversion : Florence Clavaud, Lab des Archives nationales</creation>
+            <langusage>Instrument de recherche rédigé en <language langcode="fre"
+                    >français</language></langusage>
+            <descrules>La présente notice est conforme à la <extref
+                    href="https://www.ica.org/fr/isadg-norme-generale-et-internationale-de-description-archivistique-deuxieme-edition"
+                    >norme ISAD(G)</extref>. Pour l'indexation, elle utilise les référentiels des
+                Archives nationales et du Service interministériel des Archives de France.
+            </descrules>
+        </profiledesc>
+        <!-- mentions de révision : ici pour l'exercice, comme ces données ne sont pas présentes dans le fichier Word en tant que telles, on va spécifier qu'on a procédé ultérieurement à l'indexation-->
+        <revisiondesc>
+            <change>
+                <date>2022-03</date>
+                <item>Ajout de l'indexation au niveau haut de la description</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <!-- élément archdesc, obligatoire, ainsi que l'élément did, qui vient en premier, et doit contenir au moins un sous-élément. Did contient notamment les éléments EAD correspondant aux catégories d'information recommandées à tous les niveaux en ISAD(G) : référence, dates, intitulé/analyse, description physique, producteur ; le niveau de description est ici porté dans l'attribut level, obligatoire dans l'élément archdesc. -->
+    <archdesc level="fonds">
+        <did>
+            <unittitle>Fonds Léon Blum</unittitle>
+            <unitdate normal="1901/2000">XX<emph render="super">e</emph> siècle</unitdate>
+            <unitid>570AP</unitid>
+            <origination>
+                <!-- ici on référence dans l'attribut authfilenumber, via son identifiant unique, la notice décrivant Léon Blum dans le référentiel des producteurs des AN ; ailleurs qu'aux AN, on aurait pu par ex. renvoyer à la notice sur Léon Blum à la BnF, http://ark.bnf.fr/ark:/12148/cb11892447s.public. Si l'on ne trouve pas de notice d'autorité dotée d'un identifiant pérenne ou faisant l'objet d'un permalien, on peut, comme fait ici pour l'exemple, utiliser l'attribut normal pour saisir la forme normalisée du nom du producteur. -->
+                <persname authfilenumber="FRAN_NP_050200">Blum, Léon (1872-1950)</persname>
+            </origination>
+            <!-- l'organisme qui a la responsabilité intellectuelle du fonds. Aux AN on écrira la chose comme ci-dessous. Ici on a ajouté, pour compléter cela dans le cadre de cet exercice, le lien vers la notice qui décrit les AN dans le référentiel des producteurs des AN -->
+            <repository><corpname authfilenumber="FRAN_NP_005061">Archives nationales
+                    (France)</corpname></repository>
+            <physdesc><extent>35 cartons (570 AP 1-35)</extent> ; <extent>4,85 mètres
+                    linéaires</extent>.</physdesc>
+        </did>
+        <!-- modalités d'entrée : on pourrait, dans d'autres cas, avoir besoin ici d'utiliser un attribut audience avec la valeur internal -->
+        <acqinfo>
+            <!-- s'il y a une liste, on peut utiliser l'élément <list> ; ici il faut simplement utiliser p ; par ailleurs c'est aussi une bonne idée d'encoder la date dans un élément date-->
+            <p>570AP/1 à 570AP/35 : dépôt, <date>1995</date>, complété par des achats,
+                    <date>1994-1995</date>, et un don, <date>1998</date>.</p>
+        </acqinfo>
+        <!-- conditions d'accès-->
+        <accessrestrict>
+            <!-- un exemple d'utilisation de list -->
+            <list>
+                <item>570AP/1 à 570AP/34 : sur autorisation.</item>
+                <item>570AP/35 : libre</item>
+            </list>
+        </accessrestrict>
+        <!-- autres instruments de recherche-->
+        <otherfindaid>
+            <!-- on utilise bibref ; on aurait pu en EAD y structurer plus finement l'information, mais ici ce n'est pas utile -->
+            <bibref>Inv. anal. dact. (570 AP 1-34) et index par M.-G. Chevignard, Paris, 1979-1980,
+                345 p ;</bibref>
+            <bibref>suppl. dact. (570 AP 35), par Ch. Nougaret et S. Barbiche, 2004-2010, 1
+                p.</bibref>
+        </otherfindaid>
+        <!-- L'historique du producteur : encodé pour les besoins de l'exercice, mais normalement si, comme ici, on dispose d'une notice externe à l'IR sur le producteur, on ne doit pas encoder l'historique du producteur dans le fichier EAD. On a choisi d'utiliser emph, simple élément de mise en valeur, pour baliser les titres d'oeuvre ; une autre option aurait pu être d'utiliser title. Noter que comme p peut en EAD contenir les éléments d'indexation, on aurait pu baliser comme tels les noms d'organismes, de personnes, d'événements, de lieux. -->
+        <bioghist>
+            <!-- on a choisi ici d'encoder avec head le titre de l'historique, pour l'exemple, et aussi parce qu'on peut considérer que ce titre varie d'une notice à l'autre. -->
+            <head>Notice biographique</head>
+            <p>Après des études à l’Ecole normale supérieure et à la faculté de droit, Léon Blum
+                (1872-1950), s’oriente vers la critique littéraire. Maître des requêtes au
+                    <corpname>Conseil d’Etat</corpname>, il participe aux côtés de Jaurès aux
+                combats de l’Affaire Dreyfus et aux luttes qui entourent l’unification du parti
+                socialiste et la création de <emph render="italic">L’Humanité</emph>. L’assassinat
+                de Jaurès en 1914 marque l’entrée en politique de Léon Blum. Directeur de cabinet de
+                Marcel Sembat, ministre du Ravitaillement durant la Première Guerre mondiale, il
+                s’affirme comme le chef du parti SFIO. Son intervention au Congrès de Tours de 1920
+                fait de lui le leader incontesté des réfractaires au communisme. De 1920 à 1940, il
+                dirige le parti socialiste. Directeur du <emph render="italic">Populaire</emph>, il
+                arrive au pouvoir à la tête de la coalition des partis de gauche en juin 1936. Avec
+                les Accords de Matignon, la France se transforme radicalement. Blum décide également
+                de ne pas intervenir en Espagne aux côtés du régime républicain menacé, afin de
+                préserver les acquis du Front populaire. Voulant résoudre la crise économique par
+                les pleins pouvoirs financiers, il se heurte à l’opposition du Sénat et démissionne
+                en juin 1937. Vice-président du Conseil dans le troisième cabinet Chautemps, il
+                retrouve la tête du gouvernement en mars 1938, réagit à l’Anschluss et envisage
+                d’envahir l’Espagne après la victoire de Franco. Mis en minorité par le Sénat sur
+                son nouveau projet financier, il doit se retirer en avril. En 1940, Blum est l’un
+                des « Quatre-vingts » parlementaires qui refusent d’accepter la fin de la
+                République. Traduit en justice par le régime de Vichy, il est transféré, en 1943,
+                dans une maison forestière, en bordure du camp de Buchenwald. Libéré en 1945, Léon
+                Blum, malgré un bref retour à la tête du gouvernement en 1946, passe les dernières
+                années de sa vie dans une semi-retraite.</p>
+        </bioghist>
+        <!-- indexation hors du texte du contenu de la notice. Cette indexation n'est pas exhaustive et est fournie pour montrer comment on fait cela en EAD. On a choisi ici d'utiliser d'abord, pour indexer les événements, la liste d'autorité contexte historique pour l'indexation des archives locales, http://data.culture.fr/thesaurus/page/ark:/67717/T4. AUx AN on utiliserait le référebntiel matières (indications entre commentaires) -->
+        <controlaccess>
+            <subject authfilenumber="http://data.culture.fr/thesaurus/page/ark:/67717/T4-87"
+                source="w_contexte-historique">Affaire Dreyfus (1894-1906)</subject>
+            <subject authfilenumber="http://data.culture.fr/thesaurus/page/ark:/67717/T4-100"
+                source="w_contexte-historique">Front populaire (1936-1938)</subject>
+            <subject authfilenumber="http://data.culture.fr/thesaurus/page/ark:/67717/T4-113"
+                source="w_contexte-historique">Guerre 1914-1918</subject>
+            <subject authfilenumber="http://data.culture.fr/thesaurus/page/ark:/67717/T4-114"
+                source="w_contexte-historique">Guerre 1939-1945</subject>
+            <!-- AN : FRAN_RI_004 (d-2ipxg7x1a-11jfkrneo8f1v) pour guerre 1939-1945 -->
+            <!-- <subject source="FRAN_RI_004" authfilenumber="d-2ipxg7x1a-11jfkrneo8f1v">guerre 1939-1945</subject>-->
+            <!-- AN : FRAN_RI_004 (d-2ipxg4k3u-p2e5rr8idpe6) pour guerre 1914-1918-->
+            <!-- AN : FRAN_RI_004 (d-2ipxfmuhc-mbnuborxlyv) pour TRoisième République -->
+            <!-- les activités de Léon Blum, du moins celles dont résultent les documents conservés et décrits. Utilisation du référentiel des activités des AN -->
+            <occupation source="FRAN_RI_010" authfilenumber="d699msj3i51--hevk1gms21cg"
+                >écrivain</occupation>
+            <occupation authfilenumber="d699msipbvu--al53jh9equfg" source="FRAN_RI_010">dirigeant
+                politique</occupation>
+            <occupation authfilenumber="d699msjnw86-64seh0fmw8hj" source="FRAN_RI_010"
+                >ministre</occupation>
+        </controlaccess>
+        <!-- sources complémentaires : EAD 2002 distingue 2 types de sources comp. ; ici il s'agit d'archives de provenances différentes, en tout cas c'est certain pour le premier fonds ; pour ce qui concerne l'exposition, dans le doute c'est le choix qu'on fait. On ajoute un lien vers l'IR des archives de la société Léon Blum en SIV -->
+        <relatedmaterial>
+            <p>Voir également les <archref
+                    href="https://www.siv.archives-nationales.culture.gouv.fr/siv/IR/FRAN_IR_004500"
+                    >archives de la Société des amis de Léon Blum (55AS/1 à 55AS/8)</archref>.</p>
+            <p>Les documents présentés lors de l’exposition “ Léon Blum ”, organisée aux Archives
+                nationales en 1972, ont été microfilmés sous la cote 349Mi/1 à 349Mi/5. </p>
+        </relatedmaterial>
+        <bibliography>
+            <bibref>YVERT (Benoît). <title> Dictionnaire des ministres (1789-1989)</title>. Paris :
+                Perrin, 1990, page 376.</bibref>
+            <bibref>« 50<emph render="super">e</emph> anniversaire de la mort de Léon Blum », dans
+                    <title>Revue de l’Office universitaire de recherche socialiste</title>, numéro
+                10, mars 2000, 128 pages.</bibref>
+        </bibliography>
+        <!-- description des sous-composants :ici la structure est simple, et les informations sont sommaires. On utilise toujours en France une arborescence d'éléments c. -->
+        <!-- on a choisi de renseigner systématiquement l'attribut level de chaque élément c ; en général on ne fait pas cet effort, même si c'est nettement préférable. Les valeurs données sont vagues faute d'avoir dans l'IR les indices permettant de déterminer si on a affaire à des séries organiques ou non. -->
+        <dsc>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/1-570AP/11</unitid>
+                    <unittitle>Avant l'exercice du pouvoir</unittitle>
+                    <unitdate normal="1880/1933">1880-1933</unitdate>
+                </did>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/1-570AP/3</unitid>
+                        <unittitle>L'écrivain et le critique</unittitle>
+                        <unitdate normal="1880/1914">1880-1914</unitdate>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/3 (suite)-570AP/8</unitid>
+                        <unittitle>Les débuts politiques</unittitle>
+                        <unitdate normal="1900/1933">1900-1933</unitdate>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/8 (suite)-570AP/11</unitid>
+                        <unittitle>Articles de Léon Blum dans <emph render="italic"
+                                >L'humanité</emph>, <emph render="italic">Le Populaire</emph>, <emph
+                                render="italic">Le Soir</emph></unittitle>
+                        <unitdate normal="1920/1933">1920-1933</unitdate>
+                    </did>
+                </c>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/12-570AP/18</unitid>
+                    <unittitle>De l'exercice du pouvoir à la guerre</unittitle>
+                    <unitdate normal="1934/1940">1934-1940</unitdate>
+                </did>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/12-570AP/13</unitid>
+                        <unittitle>De 1934 aux élections de 1936</unittitle>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/13 (suite)-570AP/14</unitid>
+                        <unittitle>Le Front populaire</unittitle>
+                        <unitdate normal="1936/1940">1936-1940</unitdate>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/14 (suite)-570AP/18</unitid>
+                        <unittitle>Les articles de Léon Blum dans <emph render="italic">Le
+                                Populaire</emph></unittitle>
+                        <unitdate normal="1934/1940">1934-1940</unitdate>
+                    </did>
+                </c>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/19-570AP/21</unitid>
+                    <unittitle>La guerre, la captivité, le procès de Riom</unittitle>
+                    <unitdate normal="1940/1945">1940-1945</unitdate>
+                </did>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/19</unitid>
+                        <unittitle>La guerre et la prison</unittitle>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/19-570AP/21</unitid>
+                        <unittitle>Le procès de Riom</unittitle>
+                    </did>
+                </c>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/22-570AP/30</unitid>
+                    <unittitle>Le retour à la vie politique. La fin de la vie de Léon
+                        Blum</unittitle>
+                    <unitdate normal="1945/1950">1945-1950</unitdate>
+                </did>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/30 à 570AP/34</unitid>
+                    <unittitle>Après la mort de Léon Blum. Documentation audiovisuelle.</unittitle>
+                </did>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/30</unitid>
+                        <unittitle>La mort de Léon Blum</unittitle>
+                        <unitdate normal="1950-03/1950-04">mars-avril 1950</unitdate>
+                    </did>
+                </c>
+                <c level="subgrp">
+                    <did>
+                        <unitid>570AP/31-570AP/34</unitid>
+                        <unittitle>Enregistrements</unittitle>
+                    </did>
+                </c>
+            </c>
+            <c level="recordgrp">
+                <did>
+                    <unitid>570AP/35</unitid>
+                    <unittitle>Documents Léon Blum appartenant aux Archives nationales</unittitle>
+                    <unitdate normal="1914/1946">1914-1946</unitdate>
+                </did>
+                <scopecontent>
+                    <p>Manuscrits autographes de Blum, correspondance reçu et photographies
+                        familiales.</p>
+                </scopecontent>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>
